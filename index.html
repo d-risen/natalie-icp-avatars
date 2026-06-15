@@ -226,6 +226,15 @@
   .who-catherine .kicker{color:var(--slate-deep)}
   .compare thead th:nth-child(4){color:var(--slate-deep)}
   .compare td:nth-child(4){color:var(--slate-deep)}
+
+  /* ---- Find & Connect (marketing/sales) ---- */
+  .opener{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:10px}
+  .opener .ch{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px;display:inline-block}
+  .opener .w{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18.5px;line-height:1.4;color:var(--ink)}
+  .who-maggie .opener{border-left:3px solid var(--sage)} .who-maggie .opener .ch{color:var(--sage-deep)}
+  .who-sam .opener{border-left:3px solid var(--clay)} .who-sam .opener .ch{color:var(--clay-deep)}
+  .who-catherine .opener{border-left:3px solid var(--slate)} .who-catherine .opener .ch{color:var(--slate-deep)}
+  .subhead{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin:26px 0 10px}
 </style>
 </head>
 <body>
@@ -387,6 +396,23 @@ const DATA = {
       ["The 3-Day Reset","Day 1 rest, Day 2 mindset & emotional overhaul, Day 3 strategy. She walks out with margin AND a plan she trusts."],
       ["The Build (optional)","6 months of implementation coaching, then team & leadership development as the plan rolls into the company."]
     ],
+    whereOnline:["Instagram & Facebook, her home base. She screenshots posts and sends them to her business bestie.","Christian women entrepreneur Facebook groups (she reads far more than she posts).","Faith + business podcasts and a couple of Substacks she actually opens.","On LinkedIn occasionally, but it's not where her heart is."],
+    whereInPerson:["Her church, women's ministry, small group, often serving on the events/hospitality team.","Local Christian business luncheons, women's conferences, school-mom and MOPS circles.","Conferences she's attended before, she's the one who left inspired and came home to the same chaos."],
+    find:["Referrals first, always. Past clients, church friends, mutual connections, the business bestie.","Be a genuinely helpful presence in 2-3 Christian women entrepreneur FB groups (answer, never pitch).","Engage honestly in the comments of the faith-business creators she already follows, her people are right there.","Speak at or attend small local women's and church business events, she's in that room."],
+    openers:[
+      {ch:"Warm DM (after real engagement)", w:"Hey... your post about answering Slack while making dinner... oof I felt that. How are you actually doing under all of it?"},
+      {ch:"Coffee invite (local)", w:"Would love to actually sit down sometime. No agenda, I just want to hear what you're building and how you're holding up."},
+      {ch:"When she says 'I'm so fried'", w:"Can I ask you something... if you got three quiet days to just think, what's the thing you'd finally figure out?"}
+    ],
+    connect:[
+      ["Spot her","She comments 'this is literally me' on an overwhelm post, or a past client mentions a friend who's completely fried."],
+      ["Warm her","Genuine engagement plus content that names the bottleneck, the guilt, the no-margin. She feels seen before you ever DM."],
+      ["Open the conversation","A friend-tone DM or a coffee invite. Ask how she's *actually* doing, not what she does."],
+      ["Triage the problem","Get to the real thing: what's not moving, where she's the bottleneck, the decision she can't make. Listen, don't fix."],
+      ["Invite her in","Once she trusts you: 'Want me to send you what three days could look like?' Low pressure, her call."],
+      ["Deepen","After the retreat: implementation support and friend-style check-ins. She refers from her own church and business circle."]
+    ],
+    nurture:["Show up consistently with real, vulnerable content that names her exact pain, that's the trust engine.","Check in like a friend, not a vendor: 'Thinking of you, how'd that big decision land?' Never 'circling back.'","Offer a small yes before the big one: a free resource, a short call, a local gathering.","Protect the belonging. She buys the table and the trust, not a brochure. Relationship first, offer second."],
     hookLab:"The hook that lands", hook:"Get out of the weeds. Three days to stop being the bottleneck and walk out with a plan that runs without you.",
     reframe:"Rest is stewardship, not indulgence. You cannot lead from an empty tank. Day 1 rest is what earns the Day 3 plan.",
     objections:[
@@ -437,6 +463,23 @@ const DATA = {
       ["Clarity Retreat","He comes to the Mind Spa himself, gets personally clear on his next move and his real offer."],
       ["Offer + Room Design","Natalie designs the offer and the retreat so the experience sells for him. Then: team coaching, the next event."]
     ],
+    whereOnline:["LinkedIn and Instagram, but the real action is in speaker/coach masterminds and Facebook groups (funnel-hacker, Christian speaker rooms).","Guesting on and bingeing marketing and speaking podcasts.","Watching other people's launches and event promos, quietly comparing."],
+    whereInPerson:["Conferences, masterminds, and other people's retreats and events, he's always in the room.","Speaker green rooms and the Faith to Influence / Jay Lauren / Justin Jankowski orbit.","Networking at faith-business events, he's a connector by nature."],
+    find:["Be where speakers are. Attend and speak at the events and masterminds, that's the whole game.","Natalie's own virtual event is the #1 magnet, get speakers in the room and have real conversations.","Referrals from event hosts, one host vouches for you to the next.","Engage with his launches and talks on LinkedIn/IG, then take it to DM."],
+    openers:[
+      {ch:"At an event / after his talk", w:"Loved that. Quick question, are you using your speaking to actually sell, or mostly for visibility right now?"},
+      {ch:"DM after a launch / retreat", w:"Saw your retreat, how'd the offer land? Most speakers I know close way under what they could, just because the room isn't built for it."},
+      {ch:"Value-first offer (no charge)", w:"Want me to look at your offer before your next event? No pitch, I'm just curious if I can spot the gap for you."}
+    ],
+    connect:[
+      ["Spot him","At an event, on a launch, or a 'I closed 2 of 5 and I'm kicking myself' kind of post."],
+      ["Warm him","Engage with his work, then ask the diagnostic question that makes him see the gap (selling vs. visibility)."],
+      ["Open the conversation","Lead with value, not a pitch. Offer one sharp look at his offer or room. Let him feel your thinking."],
+      ["Triage the problem","Find the real gap: volume, room design, or a soft offer. Reframe his misdiagnosis, it's not your close rate."],
+      ["Invite him in","'Come get your own clarity first' (the retreat), then 'let me design the offer and room with you.'"],
+      ["Deepen","Event design, team coaching, and, because he runs rooms full of your other ICPs, referrals and stage invites. He becomes a channel."]
+    ],
+    nurture:["Demonstrate, don't pitch. One genuinely useful insight about his offer does more than any sales call.","Speak at his events and invite him to yours, proximity plus seeing you think is what converts him.","Be the obvious call when an event underperforms. Stay close so you're top of mind at the moment of pain.","Honor the faith tension, always frame selling as service so he never feels you're turning him into a bro-marketer."],
     hookLab:"The hook that lands", hook:"You're brilliant on stage. Let's build the offer and the room that sell for you, without you ever feeling salesy.",
     reframe:"A clear offer is a gift, it removes confusion for the person God sent you to serve. Selling, done right, is service.",
     objections:[
@@ -487,6 +530,23 @@ const DATA = {
       ["Her Own Retreat","She finally takes the 3-day reset herself, renewal plus a plan, in a room where she can be a whole person."],
       ["The Culture Contract","Ongoing team & leadership development across the org. The biggest, most recurring back-end of the three."]
     ],
+    whereOnline:["LinkedIn, primarily. It's the professionally acceptable place for her to look for help.","HBR and leadership content, executive newsletters, leadership podcasts.","Quietly Christian online (a devotional, her church) but kept entirely separate from her professional presence."],
+    whereInPerson:["Industry and leadership conferences, sector associations (healthcare, etc.), board rooms.","Executive peer groups, Vistage, YPO, C12 executive forums, hospital leadership networks, chamber executive events.","Her church (privately), and alumni and professional networks."],
+    find:["LinkedIn search by title + industry + region (hospital execs, VPs, directors, org leaders). The main hunting ground.","Warm referrals from boards, peers, and execs you've already served, one hospital CEO refers the next.","Speak to leadership groups and associations, position as the leadership-development and retention expert.","Make the 'help with my leaders' angle easy to find, that's how the hospital CEO came inbound."],
+    openers:[
+      {ch:"LinkedIn (professional, human)", w:"I work with leaders carrying a burned-out team while answering to a board. If retention or leadership development is on your radar this year, I'd love to compare notes."},
+      {ch:"Referral intro / call", w:"[Mutual contact] thought we should connect. I help leadership teams that are stretched thin, starting with the leader, then the team."},
+      {ch:"The team-first invite", w:"Want me to put together what a leadership renewal day could look like for your directors? I'll include a one-pager you can take to your board."}
+    ],
+    connect:[
+      ["Spot her","On LinkedIn, via a peer or board referral, or an inbound 'I need help with my leaders' after a retention scare."],
+      ["Warm her","Professional credibility, peer-to-peer, leadership content. She needs to see you as legitimate before she opens up."],
+      ["Open the conversation","Lead with the team and the outcome (retention, leadership capacity), never a personal 'spa.' Keep it board-defensible."],
+      ["Triage the problem","Diagnose the team / retention / culture gap, and gently, how *she's* actually holding up underneath it."],
+      ["Invite her in","A team leadership day or a free Day 1 she can feel personally, then her own retreat once the guilt lifts."],
+      ["Deepen","An ongoing org culture and leadership-development contract. The biggest, most recurring relationship of the three."]
+    ],
+    nurture:["Build credibility on LinkedIn: leadership, retention, the squeeze, faith-aware but professional.","Give her the board-ready justification asset, you remove the one barrier she can't remove herself.","Use the free Day 1 as the relationship opener, let her experience it before she ever has to defend the spend.","Play the long game. Hers is the slowest cycle. Stay in touch professionally and be the expert who also gets the human and faith side."],
     hookLab:"The hook that lands", hook:"You carry the whole organization. Let's renew you and develop your leaders, in a way the board will thank you for.",
     reframe:"Developing yourself isn't weakness or indulgence, it's the highest-leverage thing you can do for the people who depend on you. Investing in leadership is investing in retention and results.",
     objections:[
@@ -521,6 +581,7 @@ const TABS = [
   {id:"reads", label:"Reads & Searches"},
   {id:"fears", label:"Deepest Fears"},
   {id:"journey", label:"The Journey"},
+  {id:"connect", label:"Find & Connect"},
   {id:"message", label:"How to Speak to Them"}
 ];
 
@@ -593,6 +654,29 @@ function panelJourney(d){
       </div>`).join('')}</div>
   </div>`;
 }
+function panelMarketing(d){
+  return `<div class="panel" data-panel="connect">
+    <div class="kicker">Marketing & sales playbook</div>
+    <h3 class="title serif">How to find her and start the conversation.</h3>
+    <p>The journey tab shows her transformation. This is <em>your</em> journey: where she actually is, how to reach her, and the exact words to open with.</p>
+    <div class="tiles">
+      <div class="tile"><h4>Where she is online</h4><ul>${d.whereOnline.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="tile"><h4>Where she is in person</h4><ul>${d.whereInPerson.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="tile full"><h4>How to find her</h4><ul>${d.find.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+    <div class="subhead">How to open the conversation</div>
+    <p style="margin-bottom:10px">The actual words, by channel. Warm, human, never a pitch:</p>
+    ${d.openers.map(o=>`<div class="opener"><span class="ch">${o.ch}</span><div class="w">"${o.w}"</div></div>`).join('')}
+    <div class="subhead">The connection journey</div>
+    <p>From stranger to relationship to client. Each stage is a move you make:</p>
+    <div class="journey">${d.connect.map((s,i)=>`
+      <div class="step"><div class="node serif">${i+1}</div>
+        <div class="scard"><div class="ph">Move ${i+1}</div><h4 class="serif">${s[0]}</h4><p>${s[1]}</p></div>
+      </div>`).join('')}</div>
+    <div class="subhead">How to nurture &amp; invest in the relationship</div>
+    <div class="tiles"><div class="tile full"><ul>${d.nurture.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+  </div>`;
+}
 function panelMessage(d){
   return `<div class="panel" data-panel="message">
     <div class="kicker">The messaging kit</div>
@@ -613,7 +697,7 @@ function panelMessage(d){
 function renderContent(who){
   const d=DATA[who];
   document.getElementById('content').innerHTML =
-    panelSnapshot(d)+panelVoice(d)+panelReads(d)+panelFears(d)+panelJourney(d)+panelMessage(d);
+    panelSnapshot(d)+panelVoice(d)+panelReads(d)+panelFears(d)+panelJourney(d)+panelMarketing(d)+panelMessage(d);
 }
 
 function copyPersona(btn){
