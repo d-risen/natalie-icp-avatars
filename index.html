@@ -248,6 +248,39 @@
   .who-maggie .objcard .post{background:var(--sage-tint)} .who-maggie .objcard .post .pf{color:var(--sage-deep)}
   .who-sam .objcard .post{background:var(--clay-tint)} .who-sam .objcard .post .pf{color:var(--clay-deep)}
   .who-catherine .objcard .post{background:var(--slate-tint)} .who-catherine .objcard .post .pf{color:var(--slate-deep)}
+
+  /* ---- Beyond the Booth (shared section, her brand: burgundy + gold) ---- */
+  :root{--rouge:#6E1A24;--rouge-deep:#4A0E16;--gold2:#B8893B;--rouge-tint:#F3E7E4}
+  .ideas{margin:18px 0 40px;border-radius:26px;overflow:hidden;border:1px solid #e7d8c2;box-shadow:var(--shadow)}
+  .ideas .top{background:linear-gradient(135deg,var(--rouge),var(--rouge-deep));color:#fff;padding:40px 38px;position:relative}
+  .ideas .top::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 200px at 90% 0%, rgba(184,137,59,.25), transparent 60%)}
+  .ideas .top .eyebrow{color:var(--gold2);position:relative}
+  .ideas .top h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.4vw,50px);font-weight:600;line-height:1.04;position:relative;margin-bottom:12px}
+  .ideas .top h2 em{font-style:italic;color:var(--gold2)}
+  .ideas .top p{color:rgba(255,253,248,.82);max-width:660px;position:relative;font-size:15.5px}
+  .ideas .bodywrap{background:var(--paper);padding:34px 38px}
+  .ideas h3.block{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;color:var(--rouge);margin:28px 0 4px;display:flex;align-items:center;gap:12px}
+  .ideas h3.block:first-child{margin-top:0}
+  .ideas h3.block .ix{font-size:13px;color:var(--gold2);border:1.5px solid var(--gold2);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-weight:700;flex:0 0 auto}
+  .ideas .blurb{color:var(--ink-soft);font-size:14.5px;margin-bottom:16px;max-width:720px}
+
+  .ctaflip{background:var(--cream-2);border:1px solid var(--line);border-left:3px solid var(--gold2);border-radius:14px;padding:15px 18px;margin-bottom:12px}
+  .ctaflip .old{font-size:13.5px;color:var(--ink-faint);margin-bottom:6px}
+  .ctaflip .old s{color:var(--ink-faint)}
+  .ctaflip .new{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--rouge);line-height:1.3}
+  .ctaflip .why{font-size:13px;color:var(--ink-soft);margin-top:7px}
+  .ctaflip .why b{color:var(--ink)}
+
+  .ideagrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 4px}
+  .ideacard{background:var(--cream-2);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s}
+  .ideacard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .ideacard .n{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gold2);line-height:1}
+  .ideacard h4{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--ink);margin:6px 0 8px;line-height:1.15}
+  .ideacard p{font-size:14px;color:var(--ink-soft);margin-bottom:8px}
+  .ideacard .why{font-size:12.5px;color:var(--rouge);font-weight:500;border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+  .ideacard .why b{text-transform:uppercase;letter-spacing:.08em;font-size:10.5px;color:var(--gold2);display:block;margin-bottom:3px}
+  @media(max-width:900px){.ideagrid{grid-template-columns:1fr}.ideas .top,.ideas .bodywrap{padding:26px 22px}}
+  @media(min-width:901px) and (max-width:1080px){.ideagrid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -259,7 +292,10 @@
       <small>Avatar Guide &middot; Mind Spa Retreat</small>
     </div>
   </div>
-  <a class="barlink" id="compareBtn">Compare side by side</a>
+  <div style="display:flex;gap:10px">
+    <a class="barlink" href="#ideas">Booth &amp; big ideas</a>
+    <a class="barlink" id="compareBtn">Compare side by side</a>
+  </div>
 </header>
 
 <!-- ============ LANDING ============ -->
@@ -315,7 +351,61 @@
     </article>
   </section>
 
-  <p class="stripnote">All three buy the 3-day Mind Spa Retreat. They split on who pays and the back end. <a id="compareBtn2">See them side by side &rarr;</a></p>
+  <p class="stripnote">All three buy the 3-day Mind Spa Retreat. They split on who pays and the back end. <a id="compareBtn2">See them side by side &rarr;</a> &nbsp;&middot;&nbsp; <a href="#ideas">See the booth &amp; big ideas &darr;</a></p>
+
+  <!-- ============ BEYOND THE BOOTH ============ -->
+  <section class="ideas" id="ideas">
+    <div class="top">
+      <div class="eyebrow">For the in-person events &amp; the booth</div>
+      <h2 class="serif">Beyond the booth: <em>stop blending in.</em></h2>
+      <p>The current card ("complimentary strategy session, stop by and let's talk") is exactly what every coach in the hall is offering. Here is how Natalie's calls to action, her booth, and her whole presence can be unmistakably hers, serving people in the moment instead of just collecting calendar bookings.</p>
+    </div>
+    <div class="bodywrap">
+
+      <h3 class="block serif"><span class="ix">1</span> Sharper calls to action</h3>
+      <p class="blurb">The shift: stop leading with your calendar and a generic "free session." Name the thing, promise a result, and give value <em>in the moment</em>. Lead with the experience, then the invitation.</p>
+
+      <div class="ctaflip"><div class="old"><s>"Complimentary strategy session."</s></div><div class="new">"The 20-Minute Next Move: leave knowing the one thing to change first."</div><div class="why"><b>Why:</b> a named, productized session with a tangible outcome beats "strategy session" (which signals a sales call). It raises perceived value and filters for people who actually want a result.</div></div>
+
+      <div class="ctaflip"><div class="old"><s>"Stop by my booth and let's talk."</s></div><div class="new">"Stop by for 3 minutes of margin: the one quiet moment you'll get all day."</div><div class="why"><b>Why:</b> in a loud, pitch-heavy expo, offering <em>rest</em> is the pattern interrupt. It proves the Mind Spa instead of describing it, and it is impossible to ignore.</div></div>
+
+      <div class="ctaflip"><div class="old"><s>"Scan to connect, access resources, or schedule a conversation."</s></div><div class="new">"Scan to get your Bottleneck Score in 90 seconds."</div><div class="why"><b>Why:</b> instant value plus a reason to share their email (to get the full breakdown). A QR that gives a result converts far better than a QR that asks for a meeting.</div></div>
+
+      <div class="ctaflip"><div class="old"><s>"I'd love to learn more about what you're building."</s></div><div class="new">"Tell me the one thing that isn't moving. I'll give you a reframe before you leave."</div><div class="why"><b>Why:</b> specific, generous, and immediate. It opens with serving, not selling, which is the whole brand and the fastest way to earn the next conversation.</div></div>
+
+      <div class="ctaflip"><div class="old"><s>Hand out a business card.</s></div><div class="new">Hand them a signed "Permission Slip" to keep (and photograph).</div><div class="why"><b>Why:</b> a keepsake artifact gets photographed and shared, so her message travels home and onto social. A business card goes in a drawer.</div></div>
+
+      <div class="ctaflip"><div class="old"><s>"Book a free call" (open to everyone, anytime).</s></div><div class="new">"I take 5 of these a day, and only a handful of retreats a quarter."</div><div class="why"><b>Why:</b> gentle scarcity and selectivity signal a premium, in-demand experience, not a coach who needs the booking. It makes the retreat feel like a room you earn your way into.</div></div>
+
+      <h3 class="block serif"><span class="ix">2</span> Booth experiences that serve in the moment</h3>
+      <p class="blurb">Yes, the booth itself can be the offer. At an event full of stretched entrepreneurs, the most radical thing Natalie can do is give them a real experience for free. The booth becomes a sample of the transformation, not a flyer about it.</p>
+      <div class="ideagrid">
+        <div class="ideacard"><div class="n serif">01</div><h4 class="serif">3 Minutes of Margin</h4><p>A calm chair, soft headphones, and a 3-minute guided reset she recorded, right in the middle of the chaos. People line up for the one moment of peace in the building.</p><div class="why"><b>Sets her apart</b>Nobody offers rest at a booth. It IS the Mind Spa, in miniature.</div></div>
+        <div class="ideacard"><div class="n serif">02</div><h4 class="serif">The Permission Slip</h4><p>Beautiful printed cards: "You have permission to rest / to step back / to stop being the bottleneck." They sign it, keep it, photograph it.</p><div class="why"><b>Sets her apart</b>Names the guilt and gives the reframe in one keepsake that travels on social.</div></div>
+        <div class="ideacard"><div class="n serif">03</div><h4 class="serif">Bottleneck Score (90 sec)</h4><p>A short diagnostic on an iPad. Instantly tells them where they are stuck and the one move to make. Email the full breakdown.</p><div class="why"><b>Sets her apart</b>They walk away with a result and a number, not a brochure.</div></div>
+        <div class="ideacard"><div class="n serif">04</div><h4 class="serif">Clarity on a Card</h4><p>She handwrites one personalized insight or next step on a beautiful card and hands it to them. High touch, deeply personal, instantly shareable.</p><div class="why"><b>Sets her apart</b>In a sea of mass-printed swag, a handwritten word from her is unforgettable.</div></div>
+        <div class="ideacard"><div class="n serif">05</div><h4 class="serif">The "3 Days" Wall</h4><p>One big prompt: "What would you do with three uninterrupted days to think?" People add sticky notes. It becomes living art, a magnet, social proof, and content.</p><div class="why"><b>Sets her apart</b>Turns the booth into a participatory experience and a content engine.</div></div>
+        <div class="ideacard"><div class="n serif">06</div><h4 class="serif">Pray Over Your Business</h4><p>For faith-driven rooms: "Want someone to pray over what you're building?" A quiet, sincere blessing, no strings.</p><div class="why"><b>Sets her apart</b>Almost no one will go here. For her people it is the most moving moment of the event.</div></div>
+        <div class="ideacard"><div class="n serif">07</div><h4 class="serif">A Pocket of the Mind Spa</h4><p>A small sensory reset station, scent, sound, texture. Let them physically <em>feel</em> two minutes of the retreat.</p><div class="why"><b>Sets her apart</b>Engages the senses in a hall built for noise. Memory is built on feeling.</div></div>
+        <div class="ideacard"><div class="n serif">08</div><h4 class="serif">5-Minute Offer Teardown</h4><p>For the speakers and coaches: quick expert eyes on their offer or event, with one sharp fix on the spot.</p><div class="why"><b>Sets her apart</b>Immediate, undeniable value for the Sam crowd who run the rooms she wants in.</div></div>
+        <div class="ideacard"><div class="n serif">09</div><h4 class="serif">Host a Table, Not a Booth</h4><p>At the right events, run an intimate founders' dinner for 8 instead of (or beside) the booth. Depth over foot traffic.</p><div class="why"><b>Sets her apart</b>Relationships happen at the table. She converts on belonging, not volume.</div></div>
+      </div>
+
+      <h3 class="block serif"><span class="ix">3</span> How Natalie stands apart (in a sea of coaches)</h3>
+      <p class="blurb">The bigger positioning plays. These are the things most coaches and consultants cannot copy, because they do not have what Natalie has.</p>
+      <div class="ideagrid">
+        <div class="ideacard"><div class="n serif">01</div><h4 class="serif">She has a place</h4><p>A brick-and-mortar Mind Spa is unheard of for a coach. The physical destination is the moat. Lead with it everywhere.</p><div class="why"><b>The edge</b>Anyone can sell a Zoom call. Almost no one can say "come to my place."</div></div>
+        <div class="ideacard"><div class="n serif">02</div><h4 class="serif">Rest as strategy</h4><p>Own the calm in a hustle-soaked industry. The only one selling "slow down so you can finally think," plus an actual plan.</p><div class="why"><b>The edge</b>A category of one. Everyone else is louder; she is the exhale.</div></div>
+        <div class="ideacard"><div class="n serif">03</div><h4 class="serif">Name the IP</h4><p>Trademark-able signature experiences and tools: The 3-Day Reset, the Bottleneck Score, the Margin Map.</p><div class="why"><b>The edge</b>Named frameworks make her referable, ownable, and impossible to confuse with anyone else.</div></div>
+        <div class="ideacard"><div class="n serif">04</div><h4 class="serif">Serve before you sell, literally</h4><p>Every touchpoint gives a real experience first, the booth, the Day 1, the free reframe. The product proves itself.</p><div class="why"><b>The edge</b>She does not describe the transformation, she lets you taste it.</div></div>
+        <div class="ideacard"><div class="n serif">05</div><h4 class="serif">Faith woven, not bolted on</h4><p>Whole-person leadership, blessing, permission, stewardship. Most coaches cannot or will not go there.</p><div class="why"><b>The edge</b>For faith-driven founders, this is the deepest trust signal there is.</div></div>
+        <div class="ideacard"><div class="n serif">06</div><h4 class="serif">The free Day 1</h4><p>A signature trojan-horse: comp the first day of the experience for high-value leaders, then expand to the full retreat or the team.</p><div class="why"><b>The edge</b>Competitors can't copy it, they don't have a place to invite people to.</div></div>
+        <div class="ideacard"><div class="n serif">07</div><h4 class="serif">An alumni room</h4><p>A community for everyone who has been through the retreat. The belonging keeps them, and brings their friends.</p><div class="why"><b>The edge</b>Turns one-time clients into a movement and a referral engine.</div></div>
+        <div class="ideacard"><div class="n serif">08</div><h4 class="serif">Moment &rarr; place &rarr; plan &rarr; people</h4><p>A clear ladder: a 3-minute moment at a booth, a place to come, a plan to follow, a community to belong to.</p><div class="why"><b>The edge</b>A coherent journey, not a pile of services. People always know the next step.</div></div>
+      </div>
+
+    </div>
+  </section>
 </main>
 
 <!-- ============ DOSSIER ============ -->
