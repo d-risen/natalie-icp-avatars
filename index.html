@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Natalie's Two People — Interactive Avatar Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#F7F2E9; --cream-2:#FBF8F1; --paper:#FFFDF8;
+    --ink:#2E2A26; --ink-soft:#5C554C; --ink-faint:#8A8175;
+    --line:#E4DBCB;
+    --sage:#7E9070; --sage-deep:#586B4C; --sage-tint:#EAEFE4;
+    --clay:#C07A5B; --clay-deep:#9A5638; --clay-tint:#F6E7DD;
+    --gold:#C2A36B; --plum:#5A4458;
+    --shadow:0 18px 50px -22px rgba(46,42,38,.55);
+    --shadow-sm:0 8px 24px -14px rgba(46,42,38,.5);
+    --r:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 12% -8%, var(--sage-tint), transparent 60%),
+      radial-gradient(1100px 620px at 92% 4%, var(--clay-tint), transparent 55%),
+      var(--cream);
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .serif{font-family:'Cormorant Garamond',serif}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+
+  /* ---------- TOP BAR ---------- */
+  header.bar{display:flex;align-items:center;justify-content:space-between;padding:26px 28px;max-width:1160px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.02em}
+  .brand .dot{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--clay));box-shadow:var(--shadow-sm);display:grid;place-items:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
+  .brand small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .barlink{font-size:13px;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);padding:9px 16px;border-radius:40px;background:var(--paper);transition:.25s}
+  .barlink:hover{border-color:var(--sage);color:var(--sage-deep)}
+
+  /* ---------- HERO ---------- */
+  .hero{text-align:center;padding:30px 0 14px}
+  .eyebrow{font-size:12.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--clay-deep);font-weight:600;margin-bottom:18px}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,6.5vw,78px);line-height:1.02;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--sage-deep)}
+  .hero p.lead{max-width:640px;margin:20px auto 0;color:var(--ink-soft);font-size:17px}
+  .cue{margin-top:26px;display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-faint);letter-spacing:.04em}
+  .cue span{width:8px;height:8px;border-radius:50%;background:var(--clay);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+
+  /* ---------- AVATAR CARDS ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:40px 0 30px}
+  .card{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--paper);box-shadow:var(--shadow);border:1px solid var(--line);transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s;min-height:430px;display:flex;flex-direction:column;justify-content:flex-end}
+  .card:hover{transform:translateY(-8px);box-shadow:0 30px 70px -28px rgba(46,42,38,.6)}
+  .card .photo{position:absolute;inset:0;background-size:cover;background-position:center top;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .card:hover .photo{transform:scale(1.06)}
+  .card .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,0) 32%,rgba(20,18,16,.18) 52%,rgba(20,18,16,.86) 100%)}
+  .card .tag{position:absolute;top:18px;left:18px;z-index:3;background:rgba(255,253,248,.92);backdrop-filter:blur(4px);color:var(--ink);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:30px;box-shadow:var(--shadow-sm)}
+  .card.maggie .tag{color:var(--sage-deep)}
+  .card.sam .tag{color:var(--clay-deep)}
+  .card .body{position:relative;z-index:3;padding:28px;color:#fff}
+  .card .body h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;line-height:1}
+  .card .body .role{font-size:14px;opacity:.92;margin-top:8px;font-weight:500}
+  .card .body .one{font-size:14.5px;opacity:.85;margin-top:14px;max-width:340px;font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:19px;line-height:1.35}
+  .card .open{margin-top:18px;display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink);padding:11px 18px;border-radius:30px;transition:.3s}
+  .card.maggie .open{color:var(--sage-deep)} .card.sam .open{color:var(--clay-deep)}
+  .card:hover .open{gap:14px}
+  .accentbar{height:6px;width:100%}
+  .card.maggie .accentbar{background:linear-gradient(90deg,var(--sage),var(--sage-deep))}
+  .card.sam .accentbar{background:linear-gradient(90deg,var(--gold),var(--clay))}
+
+  .stripnote{text-align:center;color:var(--ink-faint);font-size:13.5px;margin:6px 0 60px}
+  .stripnote a{color:var(--clay-deep);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+  /* ---------- DOSSIER (detail) ---------- */
+  .dossier{position:fixed;inset:0;z-index:50;background:var(--cream);overflow-y:auto;opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .4s,transform .4s}
+  .dossier.show{opacity:1;pointer-events:auto;transform:none}
+  .dtop{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:rgba(247,242,233,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .back{display:inline-flex;align-items:center;gap:9px;cursor:pointer;border:1px solid var(--line);background:var(--paper);border-radius:40px;padding:10px 18px;font-size:13px;font-weight:500;color:var(--ink-soft);transition:.25s}
+  .back:hover{border-color:var(--clay);color:var(--clay-deep)}
+  .switch{display:flex;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:40px;padding:5px}
+  .switch button{border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;color:var(--ink-faint);padding:8px 16px;border-radius:30px;transition:.25s}
+  .switch button.on{color:#fff}
+  .switch button.on[data-who="maggie"]{background:var(--sage-deep)}
+  .switch button.on[data-who="sam"]{background:var(--clay-deep)}
+
+  .dgrid{display:grid;grid-template-columns:340px 1fr;gap:38px;max-width:1160px;margin:0 auto;padding:34px 28px 90px}
+  /* left identity rail */
+  .rail{position:sticky;top:92px;align-self:start}
+  .railcard{border-radius:var(--r);overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .railcard .ph{aspect-ratio:3/3.4;background-size:cover;background-position:center top}
+  .railcard .meta{padding:22px}
+  .railcard .meta .name{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1}
+  .railcard .meta .sub{font-size:13.5px;color:var(--ink-soft);margin-top:8px;font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .chip{font-size:11.5px;background:var(--cream);border:1px solid var(--line);color:var(--ink-soft);padding:6px 11px;border-radius:20px}
+  .who-maggie .chip{background:var(--sage-tint);border-color:#d6e0cc;color:var(--sage-deep)}
+  .who-sam .chip{background:var(--clay-tint);border-color:#ecd6c8;color:var(--clay-deep)}
+  .tabnav{margin-top:18px;display:flex;flex-direction:column;gap:4px}
+  .tabnav button{text-align:left;border:0;background:transparent;font-family:inherit;cursor:pointer;font-size:14.5px;font-weight:500;color:var(--ink-soft);padding:12px 16px;border-radius:14px;display:flex;align-items:center;gap:12px;transition:.2s}
+  .tabnav button .num{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;opacity:.5;width:18px}
+  .tabnav button:hover{background:var(--cream-2)}
+  .tabnav button.on{background:var(--paper);box-shadow:var(--shadow-sm);color:var(--ink)}
+  .who-maggie .tabnav button.on{border-left:3px solid var(--sage)}
+  .who-sam .tabnav button.on{border-left:3px solid var(--clay)}
+
+  /* right content */
+  .content{min-height:60vh}
+  .panel{display:none;animation:fade .45s ease}
+  .panel.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+  .who-maggie .kicker{color:var(--sage-deep)} .who-sam .kicker{color:var(--clay-deep)}
+  .panel h3.title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,46px);font-weight:600;line-height:1.04;letter-spacing:-.01em;margin-bottom:18px}
+  .panel p{color:var(--ink-soft);margin-bottom:14px;font-size:15.5px}
+  .panel p strong{color:var(--ink)}
+  .lead-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);line-height:1.4;color:var(--ink);border-left:3px solid var(--gold);padding:6px 0 6px 22px;margin:6px 0 22px}
+
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  .tile{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm)}
+  .tile h4{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-bottom:10px}
+  .tile ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .tile li{font-size:14.5px;color:var(--ink-soft);padding-left:18px;position:relative}
+  .tile li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%}
+  .who-maggie .tile li::before{background:var(--sage)} .who-sam .tile li::before{background:var(--clay)}
+  .tile.full{grid-column:1/-1}
+
+  .quotes{display:flex;flex-direction:column;gap:10px;margin:6px 0 4px}
+  .quotes .q{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:13px 18px;font-size:15px;color:var(--ink);font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:18px}
+
+  .word-cloud{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 22px}
+  .word-cloud span{font-size:14px;padding:8px 14px;border-radius:30px;font-weight:500}
+  .who-maggie .word-cloud span{background:var(--sage-tint);color:var(--sage-deep)}
+  .who-sam .word-cloud span{background:var(--clay-tint);color:var(--clay-deep)}
+
+  .monologue{background:linear-gradient(180deg,var(--paper),var(--cream-2));border:1px solid var(--line);border-radius:var(--r);padding:30px 32px;box-shadow:var(--shadow-sm);position:relative;margin-top:6px}
+  .monologue::before{content:"\201C";position:absolute;top:-6px;left:18px;font-family:'Cormorant Garamond',serif;font-size:110px;line-height:1;color:var(--gold);opacity:.5}
+  .monologue p{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.55;color:var(--ink);font-style:italic;font-weight:500}
+
+  .fears{display:flex;flex-direction:column;gap:12px}
+  .fear{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .fear .ic{flex:0 0 auto;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;color:#fff}
+  .who-maggie .fear .ic{background:linear-gradient(135deg,var(--sage),var(--sage-deep))}
+  .who-sam .fear .ic{background:linear-gradient(135deg,var(--gold),var(--clay-deep))}
+  .fear b{display:block;font-size:15.5px;color:var(--ink);margin-bottom:3px}
+  .fear span{font-size:14.5px;color:var(--ink-soft)}
+
+  /* journey */
+  .journey{display:flex;flex-direction:column;gap:0;margin-top:8px}
+  .step{display:grid;grid-template-columns:54px 1fr;gap:18px;position:relative;padding-bottom:26px}
+  .step:not(:last-child)::before{content:"";position:absolute;left:26px;top:48px;bottom:-4px;width:2px;background:repeating-linear-gradient(var(--line),var(--line) 5px,transparent 5px,transparent 11px)}
+  .step .node{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;color:#fff;box-shadow:var(--shadow-sm);z-index:1}
+  .who-maggie .step .node{background:linear-gradient(135deg,var(--sage),var(--sage-deep))}
+  .who-sam .step .node{background:linear-gradient(135deg,var(--gold),var(--clay-deep))}
+  .step .scard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .scard .ph{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+  .step .scard h4{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;margin:3px 0 6px}
+  .step .scard p{font-size:14.5px;color:var(--ink-soft);margin:0}
+
+  /* messaging */
+  .msg-hook{border-radius:var(--r);padding:26px 28px;color:#fff;box-shadow:var(--shadow);margin-bottom:18px}
+  .who-maggie .msg-hook{background:linear-gradient(135deg,var(--sage),var(--sage-deep))}
+  .who-sam .msg-hook{background:linear-gradient(135deg,var(--clay),var(--clay-deep))}
+  .msg-hook .lab{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.8;font-weight:600}
+  .msg-hook .big{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,34px);font-weight:600;line-height:1.15;margin-top:8px}
+  .obj{width:100%;border-collapse:separate;border-spacing:0;margin:6px 0 20px;font-size:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .obj th{text-align:left;background:var(--cream);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);padding:12px 16px;font-weight:600}
+  .obj td{padding:13px 16px;border-top:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+  .obj td:first-child{color:var(--ink);font-weight:500;width:34%}
+  .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .cta-pill{background:var(--paper);border:1px dashed;border-radius:30px;padding:10px 18px;font-size:14px;font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:17px}
+  .who-maggie .cta-pill{border-color:var(--sage);color:var(--sage-deep)}
+  .who-sam .cta-pill{border-color:var(--clay);color:var(--clay-deep)}
+  .persona-box{background:#2E2A26;color:#F7F2E9;border-radius:16px;padding:20px 22px;margin-top:18px;font-size:13px;line-height:1.65;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;position:relative}
+  .persona-box .cap{font-family:'Inter';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;display:block}
+  .copybtn{position:absolute;top:14px;right:14px;background:rgba(247,242,233,.12);border:1px solid rgba(247,242,233,.25);color:#F7F2E9;border-radius:20px;font-size:11px;padding:6px 12px;cursor:pointer;font-family:'Inter'}
+  .copybtn:hover{background:rgba(247,242,233,.22)}
+
+  /* compare modal */
+  .compare{position:fixed;inset:0;z-index:60;background:rgba(30,27,24,.55);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+  .compare.show{display:flex}
+  .compare .sheet{background:var(--cream);border-radius:var(--r);max-width:960px;width:100%;box-shadow:var(--shadow);overflow:hidden}
+  .compare .sheet .head{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid var(--line)}
+  .compare .sheet .head h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600}
+  .compare table{width:100%;border-collapse:collapse;font-size:14px}
+  .compare th,.compare td{text-align:left;padding:14px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+  .compare thead th{position:sticky;top:0;background:var(--cream-2);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .compare thead th:nth-child(2){color:var(--sage-deep)} .compare thead th:nth-child(3){color:var(--clay-deep)}
+  .compare td:first-child{font-weight:600;color:var(--ink);width:22%}
+  .compare td:nth-child(2){color:var(--sage-deep)} .compare td:nth-child(3){color:var(--clay-deep)}
+  .xbtn{cursor:pointer;border:1px solid var(--line);background:var(--paper);border-radius:50%;width:38px;height:38px;font-size:18px;color:var(--ink-soft);transition:.2s}
+  .xbtn:hover{border-color:var(--clay);color:var(--clay-deep)}
+
+  footer{padding:40px 28px 60px;text-align:center;color:var(--ink-faint);font-size:13px}
+  footer .sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--ink-soft);margin-bottom:10px}
+
+  @media(max-width:900px){
+    .cards{grid-template-columns:1fr}
+    .dgrid{grid-template-columns:1fr;gap:22px}
+    .rail{position:static}
+    .tabnav{flex-direction:row;overflow-x:auto;gap:6px;-webkit-overflow-scrolling:touch}
+    .tabnav button{white-space:nowrap;padding:10px 14px}
+    .tiles{grid-template-columns:1fr}
+    .railcard .ph{aspect-ratio:16/10}
+  }
+  @media(min-width:901px) and (max-width:1080px){
+    .cards{grid-template-columns:1fr 1fr}
+  }
+
+  /* ---- Catherine theme (corporate slate) ---- */
+  :root{--slate:#5C7488;--slate-deep:#3C4E5E;--slate-tint:#E6ECF1}
+  .card.catherine .tag{color:var(--slate-deep)}
+  .card.catherine .accentbar{background:linear-gradient(90deg,var(--slate),var(--slate-deep))}
+  .card.catherine .open{color:var(--slate-deep)}
+  .switch button.on[data-who="catherine"]{background:var(--slate-deep)}
+  .who-catherine .chip{background:var(--slate-tint);border-color:#cfdbe4;color:var(--slate-deep)}
+  .who-catherine .tabnav button.on{border-left:3px solid var(--slate)}
+  .who-catherine .tile li::before{background:var(--slate)}
+  .who-catherine .word-cloud span{background:var(--slate-tint);color:var(--slate-deep)}
+  .who-catherine .fear .ic{background:linear-gradient(135deg,var(--slate),var(--slate-deep))}
+  .who-catherine .step .node{background:linear-gradient(135deg,var(--slate),var(--slate-deep))}
+  .who-catherine .msg-hook{background:linear-gradient(135deg,var(--slate),var(--slate-deep))}
+  .who-catherine .cta-pill{border-color:var(--slate);color:var(--slate-deep)}
+  .who-catherine .kicker{color:var(--slate-deep)}
+  .compare thead th:nth-child(4){color:var(--slate-deep)}
+  .compare td:nth-child(4){color:var(--slate-deep)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">
+    <div class="dot serif">N</div>
+    <div>Natalie's Two People
+      <small>Avatar Guide &middot; Mind Spa Retreat</small>
+    </div>
+  </div>
+  <a class="barlink" id="compareBtn">Compare side by side</a>
+</header>
+
+<!-- ============ LANDING ============ -->
+<main id="landing" class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Know exactly who you're talking to</div>
+    <h1 class="serif">You serve <em>three people.</em><br/>Here is who they really are.</h1>
+    <p class="lead">Not your assumption of their pain. Their actual inner world. Tap a face to walk through how they think, what they read, what they fear, the journey they take with you, and the exact words that move them.</p>
+    <div class="cue"><span></span> Tap a person to open their full profile</div>
+  </section>
+
+  <section class="cards">
+    <!-- MAGGIE -->
+    <article class="card maggie" data-open="maggie">
+      <div class="photo" style="background-image:url('Assets/maggie.png')"></div>
+      <div class="veil"></div>
+      <div class="tag">Avatar 1 &middot; The Retreat Buyer</div>
+      <div class="body">
+        <h2 class="serif">Maxed-Out Maggie</h2>
+        <div class="role">The Depleted Faith-Driven Visionary</div>
+        <div class="one serif">"I'm the bottleneck in my own thing... I just need to get away and actually think."</div>
+        <div class="open">Open her profile &rarr;</div>
+      </div>
+      <div class="accentbar"></div>
+    </article>
+
+    <!-- SAM -->
+    <article class="card sam" data-open="sam">
+      <div class="photo" style="background-image:url('Assets/sam.png')"></div>
+      <div class="veil"></div>
+      <div class="tag">Avatar 2 &middot; The Stage Builder</div>
+      <div class="body">
+        <h2 class="serif">Stage-Builder Sam</h2>
+        <div class="role">The Faith-Driven Coach, Speaker &amp; Event Host</div>
+        <div class="one serif">"The offer's good, I just need more bodies in the room... without feeling salesy."</div>
+        <div class="open">Open his profile &rarr;</div>
+      </div>
+      <div class="accentbar"></div>
+    </article>
+
+    <!-- CATHERINE -->
+    <article class="card catherine" data-open="catherine">
+      <div class="photo" style="background-image:url('Assets/catherine.png')"></div>
+      <div class="veil"></div>
+      <div class="tag">Avatar 3 &middot; The Corporate Leader</div>
+      <div class="body">
+        <h2 class="serif">Corner-Office Catherine</h2>
+        <div class="role">The Faith-Driven Corporate &amp; Organizational Leader</div>
+        <div class="one serif">"I need help with my leaders... my team is burned out and honestly so am I."</div>
+        <div class="open">Open her profile &rarr;</div>
+      </div>
+      <div class="accentbar"></div>
+    </article>
+  </section>
+
+  <p class="stripnote">All three buy the 3-day Mind Spa Retreat. They split on who pays and the back end. <a id="compareBtn2">See them side by side &rarr;</a></p>
+</main>
+
+<!-- ============ DOSSIER ============ -->
+<section class="dossier" id="dossier">
+  <div class="dtop">
+    <div class="back" id="backBtn">&larr; All avatars</div>
+    <div class="switch">
+      <button data-who="maggie" class="on">Maggie</button>
+      <button data-who="sam">Sam</button>
+      <button data-who="catherine">Catherine</button>
+    </div>
+  </div>
+
+  <div class="dgrid" id="dossierGrid">
+    <!-- LEFT RAIL -->
+    <aside class="rail">
+      <div class="railcard">
+        <div class="ph" id="railPhoto"></div>
+        <div class="meta">
+          <div class="name serif" id="railName"></div>
+          <div class="sub" id="railSub"></div>
+          <div class="chips" id="railChips"></div>
+        </div>
+      </div>
+      <nav class="tabnav" id="tabnav"></nav>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <div class="content" id="content"></div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<div class="compare" id="compare">
+  <div class="sheet">
+    <div class="head">
+      <h3 class="serif">All three, side by side</h3>
+      <button class="xbtn" id="xCompare">&times;</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Dimension</th><th>Maxed-Out Maggie</th><th>Stage-Builder Sam</th><th>Corner-Office Catherine</th></tr></thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="sig serif">"People hand me the thing they can't untangle alone, and leave with a plan and a calmer mind."</div>
+  Built for Natalie &middot; Companion to the ICP Deep Dive &amp; Profiles docs &middot; 2026
+</footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const DATA = {
+  maggie:{
+    name:"Maxed-Out Maggie", sub:"The Depleted Faith-Driven Visionary",
+    chips:["Age 38-58","Owner / Founder / Exec","Has a team","$250K-$3M","Christian","Buys the retreat for herself"],
+    snapshotKicker:"Avatar 1 &middot; The primary retreat buyer",
+    snapTitle:"The leader everyone leans on, running on fumes.",
+    snapLead:"She built something real and on paper she's winning. Underneath, she's the bottleneck, the rainmaker and the final approval for so long that she can't hear herself think.",
+    snapBody:[
+      "She's 38 to 58. She owns a business doing $250K to $3M, or she leads a department, ministry, or organization with a team under her (the hospital-CEO type who emails \"I need help with my leaders\" is her cousin). She's a Christian who wants her faith and work to be <strong>one thing, not two</strong>. Distance isn't the obstacle, she'll fly in for the right experience.",
+      "The fruit she expected by now isn't fully there, and a quiet question has moved in: <strong>is this still the right path, or am I just too deep in it to see straight?</strong> She's not at a motivation deficit. She's at a margin and clarity deficit. She doesn't need a pep talk. She needs three uninterrupted days, an emotional reset, and a plan she actually trusts.",
+      "<strong>The vibe:</strong> capable, steady to everyone watching, privately running on empty. She holds it together for the team, the family and the small group, and almost no one asks who holds her. She believes, under the surface, that good stewards don't take three days for themselves. That belief is the exact thing keeping her stuck."
+    ],
+    words:["Bottleneck","No margin","Can't hear myself think","Spread too thin","Crossroads","Is this still it?","Stewardship","Discernment","Just need to get away"],
+    quotes:[
+      "I'm the bottleneck in my own thing. Nothing moves without me.",
+      "I'm so close to it I can't see it anymore.",
+      "I know what I should do, I just can't get traction.",
+      "If I leave for three days everything falls apart, and that scares me."
+    ],
+    monologue:"Okay. If I can just get through this week. I used to be the idea person. I used to have vision. Now I'm just triaging. When did I last have an actual thought that wasn't a fire? I told everyone we'd rest more this year. I literally taught on margin at the women's thing. And here I am answering Slack while the pasta boils over, again. The fruit should be here by now and it's just... not, and I don't know if that's a strategy problem or a me problem or God trying to tell me something I'm too busy to hear. I need to get away. But if I leave, it all stops, which probably means I built it wrong. Taking three days for myself feels indulgent. Who am I to go to a spa when there's this much to carry? But I cannot keep leading on empty. Something has to change and I don't even know which thread to pull first.",
+    googles:["how to get out of the weeds in my business","I'm the bottleneck in my own business","Christian leadership burnout","executive retreat for clarity","sabbath rest for entrepreneurs","how do I know if God is redirecting my business","founder to CEO transition","decision fatigue leaders"],
+    reads:["John Mark Comer &mdash; Ruthless Elimination of Hurry","Ruth Haley Barton &mdash; Strengthening the Soul of Your Leadership","Pete Scazzero &mdash; The Emotionally Healthy Leader","Emily P. Freeman &mdash; The Next Right Thing","Christy Wright &mdash; Take Back Your Time","Jordan Raynor &mdash; Redeeming Your Time","Lencioni, Brené Brown, Donald Miller"],
+    listens:["Lead to Win (Michael Hyatt)","At the Table (Patrick Lencioni)","The Next Right Thing","The Emotionally Healthy Leader","That Sounds Fun (Annie F. Downs)","A daily devotional / Bible app"],
+    forums:["Lurks r/entrepreneur & r/smallbusiness for the 1am \"anyone else completely fried?\" threads","Christian women's leadership Facebook groups (reads, rarely posts, she's the one others ask)","Saves posts on boundaries and burnout and never reads them again"],
+    fears:[
+      ["House of Cards","Her success is fragile, held together by her own white-knuckling, and stepping away proves she built it wrong."],
+      ["Indulgence Guilt","Taking three days and money for herself is selfish, unspiritual, not what a good steward does."],
+      ["The Slow Fade","She's quietly burning out and her people can see the stress leaking out. Her exhaustion is becoming her witness."],
+      ["The Wrong Road","She'll keep grinding down a path God was redirecting, because she never stopped to ask the real question."],
+      ["The Lonely Summit","Too 'business' for church friends, too 'faith' for business peers. No single room to put the whole tangled thing on the table."]
+    ],
+    journey:[
+      ["The Wall","She hits a crossroads she can't resolve alone, or a stretch of overwhelm that finally scares her. The status quo cracks."],
+      ["Named at the Right Moment","Someone she trusts (Natalie) checks in and names exactly what she's feeling. She feels seen, not sold."],
+      ["Permission to Rest","The reframe lands: rest is stewardship, not indulgence. You can't lead from empty. The guilt loosens."],
+      ["The 3-Day Reset","Day 1 rest, Day 2 mindset & emotional overhaul, Day 3 strategy. She walks out with margin AND a plan she trusts."],
+      ["The Build (optional)","6 months of implementation coaching, then team & leadership development as the plan rolls into the company."]
+    ],
+    hookLab:"The hook that lands", hook:"Get out of the weeds. Three days to stop being the bottleneck and walk out with a plan that runs without you.",
+    reframe:"Rest is stewardship, not indulgence. You cannot lead from an empty tank. Day 1 rest is what earns the Day 3 plan.",
+    objections:[
+      ["\"I can't afford the time away\"","If I leave it all falls apart, which proves I'm the bottleneck","The 3 days is how you STOP being the bottleneck. You leave with a plan that runs without you."],
+      ["\"$4K-$10K is a lot\"","Is investing in ME justified?","This is the strategy that protects every other dollar this year. (Owner: write-off.)"],
+      ["\"Isn't a spa self-indulgent?\"","Good stewards don't pamper themselves","Rest is stewardship. Day 1 rest exists so Days 2-3 produce a plan."],
+      ["\"Will it actually change anything?\"","Been to conferences, came home, nothing changed","One-on-one, and you leave with a written plan plus optional 6-month support."]
+    ],
+    ctas:["Is getting away to actually think on your radar this season?","Want me to send you what the three days look like?"],
+    persona:"You are writing to a faith-driven leader (founder, owner, or executive with a team). She is competent and successful on paper but has become the bottleneck in her own work. She has no margin to think, she's at a crossroads she can't resolve alone, and the results she expected aren't showing up. She feels guilty taking time for herself because she believes good stewards don't pamper themselves. She fears her success is fragile and that she's quietly burning out.\nShe says: \"I'm the bottleneck.\" \"I just need to get away and think.\" \"I'm so close to it I can't see it.\"\nShe wants: margin, an emotional reset, and a clear plan she trusts.\nThe reframe she needs: rest is stewardship, not indulgence. You can't lead from empty.\nAvoid: hype, hustle language, anything that sounds like a spa indulgence or a conference high. Tone: warm, grounded, faith-aligned, direct, no fluff."
+  },
+
+  sam:{
+    name:"Stage-Builder Sam", sub:"The Faith-Driven Coach, Speaker & Event Host",
+    chips:["Age 35-55","Coach / Speaker / Host","Runs retreats & events","High-ticket offers","Christian","Buys clarity, then offer design"],
+    snapshotKicker:"Avatar 2 &middot; The access client & connector",
+    snapTitle:"All the message and talent. None of the sales architecture.",
+    snapLead:"Powerful on stage, warm in the room. He's decided the path forward is retreats with a high-ticket offer, and he's frustrated.",
+    snapBody:[
+      "He's 35 to 55. He builds in coaching, speaking, courses and live events. Christian, and that faith is exactly why selling makes him squirm. Plugged into speaker networks and masterminds (the Faith to Influence orbit). Already running first or early high-ticket offers.",
+      "The gap: he's a <strong>speaker, not a sales architect</strong>. He gets on stage, delivers transformation, then either doesn't make the offer, makes it awkwardly, or makes a genuinely good offer to a room that's too small. He closed 2 of 5 at his last retreat and is beating himself up over the three he 'lost', when the real issue is <strong>volume and room design, not the close.</strong>",
+      "<strong>The vibe:</strong> generous, encouraging, a little allergic to anything that smells like marketing. He'll over-deliver content for free then wonder why the business is stressed. He says 'I'm not a closer' like it's a personality trait instead of a fixable skill gap. More talent than structure.",
+      "<strong>Why he's gold:</strong> Sam runs rooms full of other Sams and Maggies. Serve him well and he refers, invites Natalie to speak, and fills her pipeline. He's both a client and a distribution channel."
+    ],
+    words:["Serve, don't sell","I don't want to be salesy","Fill the room","Speak to sell","Authenticity","Add value","I'm not a planner","Impact"],
+    quotes:[
+      "I don't speak to sell, that's just not me.",
+      "I want to run retreats but I'm not a retreat planner.",
+      "The offer is good, I just need more bodies in the room.",
+      "How do I make an offer without feeling gross about it?"
+    ],
+    monologue:"That retreat was good. People cried, people had breakthroughs. And then I got to the part where I make the offer and I just... rushed it. Mumbled the price. Practically apologized for it. Two said yes, which is great, but I wanted all five, and now I'm replaying it at 1am. Maybe I'm just not a salesperson. But then how am I supposed to keep doing this? The thing is the offer IS good, I know it changes lives, so why does charging for it make me feel slimy? I don't want to be one of those bro-marketer guys with the rented Lamborghini. I want to serve. But serving doesn't pay for the venue. Honestly the real problem is there just weren't enough people there. Five people. If I'd had twenty, even the same close rate gets me eight. I need to fill the room. And I need someone to look at the actual offer and the flow of the day, because I'm winging the structure every time. I'm a speaker. I can hold a stage. I just can't seem to build the thing around it that converts.",
+    googles:["how to sell from stage without being salesy","how to fill a retreat","high ticket offer for coaches","retreat design for transformation","how to make an offer at a live event","Christian way to sell high ticket","perfect webinar script","how many people for a profitable retreat"],
+    reads:["Russell Brunson &mdash; Expert Secrets / DotCom Secrets","Alex Hormozi &mdash; $100M Offers / $100M Leads","Donald Miller &mdash; Building a StoryBrand","Mike Michalowicz &mdash; Profit First","Stu McLaren &mdash; memberships","Dan Sullivan &mdash; Who Not How","Judy Weber &mdash; Authority Driven Sales (faith)"],
+    listens:["Marketing Secrets (Russell Brunson)","The Game (Alex Hormozi)","Online Marketing Made Easy (Amy Porterfield)","Authority Driven Sales (Judy Weber)","Studies other Christian speakers' rooms"],
+    forums:["ClickFunnels / Funnel Hacker groups","Coaching & speaker Facebook groups, mastermind back-channels","Reads other people's launch & event-close case studies and quietly compares","Hunts for the faith-friendly version of every sales tactic"],
+    fears:[
+      ["The Sleazy Salesman","Making an offer makes him the pushy, manipulative type he can't stand, betraying his faith and identity."],
+      ["The Empty Room","He'll pour months and money into an event and it won't pay for itself. Again."],
+      ["The Wasted Gift","He has a real calling and message, and is leaving both impact and income on the table because he can't close."],
+      ["The Fraud Flip","If he gets 'good at sales' he'll become someone he doesn't respect."],
+      ["The Forever Plateau","He'll stay a talented speaker who never builds the business around the talent."]
+    ],
+    journey:[
+      ["The Underperforming Event","A retreat or launch closes weak (low volume, soft offer). The gap is exposed and he can't unsee it."],
+      ["Watching Natalie Think","At his event, a virtual event, or a call, he sees her diagnose the room. \"I need that.\""],
+      ["The Reframe","Selling is service. A clear offer is a gift. It's not your close rate, it's volume + design. The shame lifts."],
+      ["Clarity Retreat","He comes to the Mind Spa himself, gets personally clear on his next move and his real offer."],
+      ["Offer + Room Design","Natalie designs the offer and the retreat so the experience sells for him. Then: team coaching, the next event."]
+    ],
+    hookLab:"The hook that lands", hook:"You're brilliant on stage. Let's build the offer and the room that sell for you, without you ever feeling salesy.",
+    reframe:"A clear offer is a gift, it removes confusion for the person God sent you to serve. Selling, done right, is service.",
+    objections:[
+      ["\"I can design my own offer\"","I'm a teacher, I should know this","You're brilliant on stage. Offer & room design is a different craft. I make YOUR genius convert."],
+      ["\"Isn't this just bro-marketing?\"","Doesn't want to be Grant Cardone","Service-first design. A clear offer removes confusion for the people God sent you."],
+      ["\"I closed 2 of 5, I'll just do it again\"","Thinks it's a him problem","The offer works. You need volume and a room built to convert. That's fixable, that's what I do."],
+      ["\"I don't have the bandwidth\"","Already drowning running the event","That's the point. I design it so the room does the work, not you."]
+    ],
+    ctas:["Want me to look at your offer before your next event?","Send me the event details, let's see if the room is built to convert."],
+    persona:"You are writing to a faith-driven coach, speaker, or event host who runs retreats and sells a high-ticket offer from the room. He is powerful on stage but doesn't 'speak to sell.' His offer is good but it isn't sharp, and there aren't enough people in the room. He's frustrated by his close rate when the real problem is volume and room design. He's afraid that making an offer makes him a sleazy salesperson, which clashes with his faith.\nHe says: \"I don't want to be salesy.\" \"The offer is good, I just need more people.\" \"Help me craft the offer.\"\nHe wants: a clear high-ticket offer and a retreat designed so the room sells for him.\nThe reframe he needs: a clear offer is a gift, it removes confusion for the people he's called to serve. Selling done right is service.\nAvoid: bro-marketing, funnel-hacker hype, anything manipulative. Tone: warm, faith-aligned, strategic, encouraging, no pressure."
+  },
+
+  catherine:{
+    name:"Corner-Office Catherine", sub:"The Faith-Driven Corporate & Organizational Leader",
+    chips:["Age 45-58","C-suite / VP / Dept Head","Hospital CEO type","Leads a team she didn't hire","Org budget, not personal","Buys for her team first"],
+    snapshotKicker:"Avatar 3 &middot; The contract client & connector to whole organizations",
+    snapTitle:"The most put-together person in the room, quietly running on empty.",
+    snapLead:"She didn't build the organization, she runs it. Squeezed between a demanding board above and a burned-out team below, she's the shock absorber, and no one is developing her.",
+    snapBody:[
+      "She's 45 to 58. C-suite, VP, department head, hospital or health-system executive, nonprofit or ministry org leader. She answers to a board, leads a team she mostly didn't hire, and is a Christian operating in an environment where faith isn't part of the workplace vocabulary, so she keeps it at the door.",
+      "The reason she's her own avatar and not just 'Maggie with a title': she spends <strong>someone else's money</strong>, has to <strong>justify it up the chain</strong>, and very often buys <strong>for her team first, not herself</strong>. She's the hospital CEO who emailed \"I need help with my leaders.\" The sale is bigger, slower, has gatekeepers, and gets framed as leadership development and ROI, not a personal retreat.",
+      "<strong>The vibe:</strong> competent, respected, diplomatic. She holds composure in rooms full of politics and carries the weight of people's livelihoods without letting it show. She manages up and down all day with no one to manage across to. She is the most 'together' person in every meeting and the most quietly depleted person in the building.",
+      "<strong>Why she's the biggest back-end:</strong> serve her and the door opens to an entire organization, team development, leadership programs, recurring culture work. The largest, most recurring revenue of the three, and the slowest, most gated to win."
+    ],
+    words:["Alignment","Buy-in","The board","Capacity","Engagement","Retention","Leadership pipeline","I'm the buffer","Managing up and down","Optics"],
+    quotes:[
+      "I need help with my leaders.",
+      "My team is burned out, and honestly so am I, but I can't say that here.",
+      "I'm caught between what the board wants and what my people can give.",
+      "How do I lead people I didn't hire?"
+    ],
+    monologue:"The board wants the numbers and they want them with a smile. My directors are fried, two of my best people are flight risks and I see it, and I'm supposed to fix the culture while hitting targets nobody on that board has to actually deliver. Everyone thinks I have it together. I am the one who has it together. And I go home and I have nothing left for my own family because I spent it all being calm for everyone else. I can't tell my team I'm struggling, that's not what leaders do here. I can't tell the board, that's career suicide. I can't even bring the one thing that actually centers me, my faith, into the building. So I just... absorb it. I keep developing everyone else and no one is developing me. I'd pay for help for my people in a heartbeat, that I can justify. Investing in me? That feels self-indulgent, and worse, it feels like admitting I can't handle it. But something has to give, because I am the bottleneck and the buffer and the cheerleader and I am running out.",
+    googles:["leadership development for executives","how to lead a burned-out team","executive coaching ROI","leadership team retreat","how to retain my best people","managing up to a difficult board","Christian executive in a secular workplace","employee engagement strategies that actually work"],
+    reads:["Harvard Business Review","Patrick Lencioni &mdash; Five Dysfunctions / The Advantage","Brené Brown &mdash; Dare to Lead","Kim Scott &mdash; Radical Candor","Adam Grant &mdash; Think Again","Simon Sinek &mdash; Leaders Eat Last","John Maxwell, Gallup StrengthsFinder"],
+    listens:["Coaching for Leaders","WorkLife with Adam Grant","Maxwell Leadership","At the Table (Lencioni)","HBR IdeaCast","A private daily devotional (kept separate from work)"],
+    forums:["LinkedIn, the professionally acceptable place to look","r/managers & executive leadership groups for the 'is anyone else alone at the top?' reality","Reads but never posts, anything she writes is attached to her name and her org"],
+    fears:[
+      ["Buffer Burnout","She's the shock absorber between a demanding board and a depleted team, and it's grinding her down with no relief."],
+      ["Imposter at the Top","Everyone believes she has it together, she's quietly drowning, and there's no one at work she can ever tell."],
+      ["Losing Her People","Her best are burning out and eyeing the exits, and she can't fix the culture from where she sits."],
+      ["The Amputated Self","She's effective but leaves her deepest, most faithful self at the door every day, becoming someone she doesn't recognize."],
+      ["The Cost of Asking","If she admits she needs help it reads as weakness or expendability, and could cost her standing or her seat."]
+    ],
+    journey:[
+      ["The Squeeze","Caught between board demands and a burned-out team, with no margin and no one developing her."],
+      ["Reaches Out for 'My Leaders'","She buys for the team, not herself, that's the spend she can justify. The door opens."],
+      ["The Free Day 1","A comped mini-experience lets the top leader feel it personally. The reframe lands: this isn't weakness, it's leverage."],
+      ["Her Own Retreat","She finally takes the 3-day reset herself, renewal plus a plan, in a room where she can be a whole person."],
+      ["The Culture Contract","Ongoing team & leadership development across the org. The biggest, most recurring back-end of the three."]
+    ],
+    hookLab:"The hook that lands", hook:"You carry the whole organization. Let's renew you and develop your leaders, in a way the board will thank you for.",
+    reframe:"Developing yourself isn't weakness or indulgence, it's the highest-leverage thing you can do for the people who depend on you. Investing in leadership is investing in retention and results.",
+    objections:[
+      ["\"Investing in me looks like weakness\"","Admitting she needs help feels unsafe","Developing yourself is the highest-leverage thing you can do for everyone who depends on you."],
+      ["\"Can I justify this to the board?\"","Spending org money on leadership","Reframe as retention + leadership capacity. I'll give you a board-ready one-pager."],
+      ["\"My team needs it more than I do\"","Deflects to the team","Start with the team, then the Day 1 lets you feel it. You can't pour from empty either."],
+      ["\"Another off-site forgotten by Monday\"","Burned by trainings that didn't stick","This works on the leader's own piece first, then the team, with measurable follow-through."]
+    ],
+    ctas:["Want me to put together what a leadership renewal day could look like for you and your team?","Should I send you a one-page overview you could take to your board?"],
+    persona:"You are writing to a faith-driven corporate or organizational leader (C-suite, VP, department head, hospital CEO). She runs an organization she didn't build, answers to a board above her, and leads a team below her she mostly didn't hire. She is the buffer between a demanding board and a burned-out team. Everyone thinks she has it together; she is quietly drowning and has no one at work she can say that to. She keeps her faith out of the workplace and longs to be a whole person in one room. She spends an org budget, not her own money, and feels that investing in herself looks like weakness, so she will fund her team before she funds herself.\nShe says: \"I need help with my leaders.\" \"My team is burned out and so am I.\" \"I'm caught between the board and my people.\" \"How do I lead people I didn't hire?\"\nShe wants: to renew herself AND develop her leaders, with an outcome she can justify to the board (retention, engagement, leadership capacity).\nThe reframe she needs: developing yourself isn't weakness, it's the highest-leverage thing you can do for the people who depend on you.\nAvoid: anything that sounds soft, self-indulgent, or that she couldn't defend to a board. Lead with the team and the outcome, not a personal spa. Tone: warm but credible, professional, faith-aware without being preachy."
+  }
+};
+
+const COMPARE = [
+  ["Who","Faith-driven business owner with a team.","Coach / speaker / host running retreats & offers.","C-suite / VP / dept head / hospital CEO."],
+  ["Core motivation","Margin + a plan she trusts. \"Get me out of the weeds.\"","A full room + an offer that converts. \"Let the room sell for me.\"","Renew herself + develop her leaders."],
+  ["The enemy","Overwhelm. She's the bottleneck with no space to think.","Salesy-phobia + empty seats. Talent without structure.","The squeeze. She's the buffer between board & burned-out team."],
+  ["Internal guilt","\"Taking time & money for myself is indulgent.\"","\"Making an offer makes me a sleazy salesperson.\"","\"Investing in me looks like weakness.\""],
+  ["Buying trigger","A crossroads or wall, named at the right moment.","A weak event/close, or watching Natalie think.","Team burnout / retention crisis. Buys for her team first."],
+  ["Money story","Personal write-off.","Business expense, ROI-driven (a good offer pays for it).","Org budget + board justification. Buys for team first."],
+  ["What they buy","3-day retreat for herself → implementation → team dev.","Retreat for clarity → offer design → event design.","Team development → her retreat → ongoing culture contract."],
+  ["Reads / follows","Comer, Ruth Haley Barton, Scazzero, Christy Wright.","Brunson, Hormozi, StoryBrand, Judy Weber.","HBR, Lencioni, Brené Brown, Adam Grant, LinkedIn."],
+  ["Faith frame","Rest as stewardship, not indulgence.","Selling as service. A clear offer is a gift.","Be a whole person, leader + believer, in one room."],
+  ["Where to reach","Referrals, Christian biz/leadership groups.","Speaker networks, masterminds, stages, virtual events.","LinkedIn, B2B / board & peer referrals."],
+  ["Marketing hook","\"Get out of the weeds. Three days to your next move.\"","\"You're brilliant on stage. Let's build the room.\"","\"You carry the org. Renew yourself, build your leaders.\""],
+  ["To Natalie","The depth client. Pays the bills.","The access client. Refers & fills the room.","The contract client. Biggest, most recurring, slowest sale."]
+];
+
+const TABS = [
+  {id:"snapshot", label:"Snapshot"},
+  {id:"voice", label:"Inner Voice"},
+  {id:"reads", label:"Reads & Searches"},
+  {id:"fears", label:"Deepest Fears"},
+  {id:"journey", label:"The Journey"},
+  {id:"message", label:"How to Speak to Them"}
+];
+
+/* ---------------- RENDER ---------------- */
+let current="maggie";
+const photoFile={maggie:"Assets/maggie.png", sam:"Assets/sam.png", catherine:"Assets/catherine.png"};
+
+function esc(s){return s;}
+
+function renderRail(who){
+  const d=DATA[who];
+  document.getElementById('railPhoto').style.backgroundImage=`url('${photoFile[who]}')`;
+  document.getElementById('railName').textContent=d.name;
+  document.getElementById('railSub').textContent=d.sub;
+  document.getElementById('railChips').innerHTML=d.chips.map(c=>`<span class="chip">${c}</span>`).join('');
+  document.getElementById('dossierGrid').className='dgrid who-'+who;
+  // tabs
+  document.getElementById('tabnav').innerHTML=TABS.map((t,i)=>
+    `<button data-tab="${t.id}" class="${i===0?'on':''}"><span class="num serif">0${i+1}</span>${t.label}</button>`).join('');
+}
+
+function panelSnapshot(d){
+  return `<div class="panel on" data-panel="snapshot">
+    <div class="kicker">${d.snapshotKicker}</div>
+    <h3 class="title serif">${d.snapTitle}</h3>
+    <p class="lead-q">${d.snapLead}</p>
+    ${d.snapBody.map(p=>`<p>${p}</p>`).join('')}
+  </div>`;
+}
+function panelVoice(d){
+  return `<div class="panel" data-panel="voice">
+    <div class="kicker">The vernacular &middot; how they talk</div>
+    <h3 class="title serif">The words already running in their head.</h3>
+    <p>The language they use on themselves and out loud. Mirror these phrases back in your copy and they feel instantly understood.</p>
+    <div class="word-cloud">${d.words.map(w=>`<span>${w}</span>`).join('')}</div>
+    <div class="quotes">${d.quotes.map(q=>`<div class="q">"${q}"</div>`).join('')}</div>
+    <h4 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin:26px 0 8px">Their inner monologue</h4>
+    <p style="margin-bottom:8px">Stream of consciousness, in their own voice. This is the emotional truth your marketing has to meet:</p>
+    <div class="monologue"><p>${d.monologue}</p></div>
+  </div>`;
+}
+function panelReads(d){
+  return `<div class="panel" data-panel="reads">
+    <div class="kicker">Research & media diet</div>
+    <h3 class="title serif">What they read, search, and scroll.</h3>
+    <div class="tiles">
+      <div class="tile full"><h4>What they Google</h4><ul>${d.googles.map(g=>`<li>"${g}"</li>`).join('')}</ul></div>
+      <div class="tile"><h4>What they read</h4><ul>${d.reads.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+      <div class="tile"><h4>What they listen to</h4><ul>${d.listens.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+      <div class="tile full"><h4>Where they lurk</h4><ul>${d.forums.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+    </div>
+  </div>`;
+}
+function panelFears(d){
+  return `<div class="panel" data-panel="fears">
+    <div class="kicker">The unspoken fears</div>
+    <h3 class="title serif">What keeps them up at 1am.</h3>
+    <p>They will never say these out loud. Name them gently in your content and you become the person who finally gets it.</p>
+    <div class="fears">${d.fears.map((f,i)=>`<div class="fear"><div class="ic serif">${i+1}</div><div><b>${f[0]}</b><span>${f[1]}</span></div></div>`).join('')}</div>
+  </div>`;
+}
+function panelJourney(d){
+  return `<div class="panel" data-panel="journey">
+    <div class="kicker">The path with Natalie</div>
+    <h3 class="title serif">The journey, start to finish.</h3>
+    <p>How they move from stuck to transformed. Every stage is a place your messaging can meet them.</p>
+    <div class="journey">${d.journey.map((s,i)=>`
+      <div class="step"><div class="node serif">${i+1}</div>
+        <div class="scard"><div class="ph">Stage ${i+1}</div><h4 class="serif">${s[0]}</h4><p>${s[1]}</p></div>
+      </div>`).join('')}</div>
+  </div>`;
+}
+function panelMessage(d){
+  return `<div class="panel" data-panel="message">
+    <div class="kicker">The messaging kit</div>
+    <h3 class="title serif">Exactly how to speak to them.</h3>
+    <div class="msg-hook"><div class="lab">${d.hookLab}</div><div class="big serif">${d.hook}</div></div>
+    <p><strong>The reframe that converts them:</strong> ${d.reframe}</p>
+    <h4 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin:22px 0 6px">Objections &amp; reframes</h4>
+    <table class="obj"><thead><tr><th>They say</th><th>What it means</th><th>Your reframe</th></tr></thead>
+    <tbody>${d.objections.map(o=>`<tr><td>${o[0]}</td><td>${o[1]}</td><td>${o[2]}</td></tr>`).join('')}</tbody></table>
+    <h4 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin:22px 0 8px">Call to action (low pressure)</h4>
+    <div class="cta-row">${d.ctas.map(c=>`<div class="cta-pill">"${c}"</div>`).join('')}</div>
+    <h4 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin:24px 0 6px">Drop this into ChatGPT</h4>
+    <p style="margin-bottom:4px">Paste this, then ask it to write 5 posts or an email on any topic, in their voice:</p>
+    <div class="persona-box"><button class="copybtn" onclick="copyPersona(this)">Copy</button><span class="cap">AI Persona &mdash; ${d.name}</span>${d.persona}</div>
+  </div>`;
+}
+
+function renderContent(who){
+  const d=DATA[who];
+  document.getElementById('content').innerHTML =
+    panelSnapshot(d)+panelVoice(d)+panelReads(d)+panelFears(d)+panelJourney(d)+panelMessage(d);
+}
+
+function copyPersona(btn){
+  const box=btn.parentElement;
+  const text=box.textContent.replace('Copy','').replace(/^AI Persona.*?\n/,'').trim();
+  navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1600)});
+}
+
+function loadAvatar(who){
+  current=who;
+  renderRail(who);
+  renderContent(who);
+  document.querySelectorAll('.switch button').forEach(b=>b.classList.toggle('on',b.dataset.who===who));
+  document.getElementById('content').scrollIntoView({block:'start'});
+  window.scrollTo(0,0);
+}
+
+function openDossier(who){
+  loadAvatar(who);
+  document.getElementById('dossier').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeDossier(){
+  document.getElementById('dossier').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+/* ---------- EVENTS ---------- */
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>openDossier(c.dataset.open)));
+document.getElementById('backBtn').addEventListener('click',closeDossier);
+document.querySelectorAll('.switch button').forEach(b=>b.addEventListener('click',()=>loadAvatar(b.dataset.who)));
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.tabnav button'); if(!t)return;
+  document.querySelectorAll('.tabnav button').forEach(b=>b.classList.remove('on'));
+  t.classList.add('on');
+  const id=t.dataset.tab;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.dataset.panel===id));
+  document.getElementById('content').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* compare */
+function openCompare(){
+  document.getElementById('compareBody').innerHTML=
+    COMPARE.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('');
+  document.getElementById('compare').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeCompare(){document.getElementById('compare').classList.remove('show');document.body.style.overflow=''}
+document.getElementById('compareBtn').addEventListener('click',openCompare);
+document.getElementById('compareBtn2').addEventListener('click',openCompare);
+document.getElementById('xCompare').addEventListener('click',closeCompare);
+document.getElementById('compare').addEventListener('click',e=>{if(e.target.id==='compare')closeCompare()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCompare();closeDossier();}});
+</script>
+</body>
+</html>
