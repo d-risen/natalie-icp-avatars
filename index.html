@@ -657,12 +657,12 @@ function panelJourney(d){
 function panelMarketing(d){
   return `<div class="panel" data-panel="connect">
     <div class="kicker">Marketing & sales playbook</div>
-    <h3 class="title serif">How to find her and start the conversation.</h3>
-    <p>The journey tab shows her transformation. This is <em>your</em> journey: where she actually is, how to reach her, and the exact words to open with.</p>
+    <h3 class="title serif">How to find them and start the conversation.</h3>
+    <p>The journey tab shows their transformation. This is <em>your</em> journey: where they actually are, how to reach them, and the exact words to open with.</p>
     <div class="tiles">
-      <div class="tile"><h4>Where she is online</h4><ul>${d.whereOnline.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-      <div class="tile"><h4>Where she is in person</h4><ul>${d.whereInPerson.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-      <div class="tile full"><h4>How to find her</h4><ul>${d.find.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="tile"><h4>Where they are online</h4><ul>${d.whereOnline.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="tile"><h4>Where they are in person</h4><ul>${d.whereInPerson.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="tile full"><h4>How to find them</h4><ul>${d.find.map(x=>`<li>${x}</li>`).join('')}</ul></div>
     </div>
     <div class="subhead">How to open the conversation</div>
     <p style="margin-bottom:10px">The actual words, by channel. Warm, human, never a pitch:</p>
