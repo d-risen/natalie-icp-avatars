@@ -235,6 +235,19 @@
   .who-sam .opener{border-left:3px solid var(--clay)} .who-sam .opener .ch{color:var(--clay-deep)}
   .who-catherine .opener{border-left:3px solid var(--slate)} .who-catherine .opener .ch{color:var(--slate-deep)}
   .subhead{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin:26px 0 10px}
+
+  /* ---- Objections & Content ---- */
+  .platbadge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 15px;border-radius:30px;margin-bottom:8px;color:#fff}
+  .who-maggie .platbadge{background:var(--sage-deep)} .who-sam .platbadge{background:var(--clay-deep)} .who-catherine .platbadge{background:var(--slate-deep)}
+  .objcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+  .objcard .o{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;color:var(--ink);margin-bottom:10px}
+  .objcard .meta{font-size:14px;color:var(--ink-soft);margin-bottom:6px}
+  .objcard .meta b{color:var(--ink)}
+  .objcard .post{margin-top:12px;border-radius:12px;padding:13px 16px;color:var(--ink);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:17.5px;line-height:1.4}
+  .objcard .post .pf{font-family:'Inter';font-style:normal;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:5px}
+  .who-maggie .objcard .post{background:var(--sage-tint)} .who-maggie .objcard .post .pf{color:var(--sage-deep)}
+  .who-sam .objcard .post{background:var(--clay-tint)} .who-sam .objcard .post .pf{color:var(--clay-deep)}
+  .who-catherine .objcard .post{background:var(--slate-tint)} .who-catherine .objcard .post .pf{color:var(--slate-deep)}
 </style>
 </head>
 <body>
@@ -422,6 +435,21 @@ const DATA = {
       ["\"Will it actually change anything?\"","Been to conferences, came home, nothing changed","One-on-one, and you leave with a written plan plus optional 6-month support."]
     ],
     ctas:["Is getting away to actually think on your radar this season?","Want me to send you what the three days look like?"],
+    content:{
+      platform:"Instagram & Facebook",
+      voice:"Warm, real, faith-woven but never preachy. Short personal stories, name the exact pain, no hype, no hustle talk. Serve first, invite (don't pitch) at the end. Her anchor: rest is stewardship, and the methods are many but the principles are few.",
+      pillars:["The bottleneck life, naming the overwhelm so she feels seen","Rest is stewardship, reframing the guilt around slowing down","From fried to clear, anonymized stories of leaders who got space and a plan","Behind the Mind Spa, why Natalie is building it and what 3 days actually looks like"],
+      objections:[
+        {o:"It's too expensive, I can't spend that on myself.", under:"She'll fund everyone but herself, plus guilt about self-investment.", reframe:"Staying fried isn't free. You're already paying for it in missed decisions and lost time.", fmt:"Reel / talking to camera", hook:"Let's talk about what burnout is actually costing you. Spoiler: it's more than the price of getting away."},
+        {o:"I can't take the time away, it'll all fall apart.", under:"She's the bottleneck and afraid to test it.", reframe:"If it can't survive you being gone three days, that's the thing we fix, not the reason to stay.", fmt:"Carousel", hook:"If your business can't run without you for 72 hours... that's not a reason to stay. That's the thing to solve."},
+        {o:"What if it doesn't work? I've done retreats and nothing changed.", under:"Conference-high fatigue.", reframe:"A conference gives you a feeling. This gives you a written plan and someone walking it out with you.", fmt:"Story-style post", hook:"Why you came home from that last conference all fired up... and nothing actually changed. (It wasn't your fault.)"},
+        {o:"I'll just go back to the same rat race.", under:"Fear that nothing structural changes.", reframe:"That's exactly why Day 3 is a plan, not a vibe, and why there's follow-through after.", fmt:"Reel", hook:"The reason nothing sticks after you 'get away', and the one thing that actually makes the change last."},
+        {o:"Isn't this self-indulgent? It's a spa.", under:"Indulgence guilt, the stewardship knot.", reframe:"Rest is stewardship. You can't pour from empty. Even Jesus withdrew.", fmt:"Faith-woven personal post", hook:"I used to believe rest was something I had to earn. Here's the day that changed my mind."},
+        {o:"I don't even know what I'd work on.", under:"Too foggy to name the problem.", reframe:"That fog IS the reason to come. Days 1 and 2 clear it, Day 3 names the move.", fmt:"Carousel", hook:"5 signs you don't need more hustle. You need room to think."},
+        {o:"I should be able to figure this out myself.", under:"Pride and self-reliance.", reframe:"You can't read the label from inside the jar. The best leaders get outside eyes.", fmt:"Quote + short story", hook:"You can't see the whole picture when you're standing inside the frame."}
+      ],
+      hooks:["You're not lazy and you're not failing. You're the bottleneck, and no one ever taught you how to get out.","You taught your team about margin... and answered Slack through dinner again.","Rest isn't the reward for finishing. It's how you lead well in the first place."]
+    },
     persona:"You are writing to a faith-driven leader (founder, owner, or executive with a team). She is competent and successful on paper but has become the bottleneck in her own work. She has no margin to think, she's at a crossroads she can't resolve alone, and the results she expected aren't showing up. She feels guilty taking time for herself because she believes good stewards don't pamper themselves. She fears her success is fragile and that she's quietly burning out.\nShe says: \"I'm the bottleneck.\" \"I just need to get away and think.\" \"I'm so close to it I can't see it.\"\nShe wants: margin, an emotional reset, and a clear plan she trusts.\nThe reframe she needs: rest is stewardship, not indulgence. You can't lead from empty.\nAvoid: hype, hustle language, anything that sounds like a spa indulgence or a conference high. Tone: warm, grounded, faith-aligned, direct, no fluff."
   },
 
@@ -489,6 +517,21 @@ const DATA = {
       ["\"I don't have the bandwidth\"","Already drowning running the event","That's the point. I design it so the room does the work, not you."]
     ],
     ctas:["Want me to look at your offer before your next event?","Send me the event details, let's see if the room is built to convert."],
+    content:{
+      platform:"Instagram & Facebook (with some LinkedIn)",
+      voice:"Encouraging, direct, faith-aligned. Reframes selling as service. Practical and a little myth-busting, but never bro-marketing. Natalie's line fits him: the methods are many, the principles are few.",
+      pillars:["Sell without the slime, selling as service the faith-friendly way","Fill the room, volume and room design over obsessing about close rate","The offer is the gift, clarity removes confusion for the people you serve","Behind the stage, how a retreat is actually designed to lead to the yes"],
+      objections:[
+        {o:"I can design my own offer, I'm the expert.", under:"Pride, he's the one who teaches this stuff.", reframe:"You're brilliant on stage. Building the offer and the room is a different craft, and it's what makes your genius convert.", fmt:"Reel", hook:"Being a great speaker and building an offer that sells are two completely different skills. Here's the gap nobody talks about."},
+        {o:"It's too expensive, my events barely break even.", under:"Cash-flow fear.", reframe:"A room built to convert pays for itself in a single event. The expensive thing is running another one that doesn't.", fmt:"Carousel", hook:"The real math on why your last retreat barely broke even, and the one fix."},
+        {o:"What if I invest and the room still doesn't convert?", under:"Fear of failing again.", reframe:"It isn't magic, it's structure: enough people plus a room designed to lead to the yes.", fmt:"Story-style post", hook:"Closing 2 of 5 isn't a you problem. It's a math and design problem, and both are fixable."},
+        {o:"I just need more people, I don't need offer help.", under:"Misdiagnosis.", reframe:"You need volume AND design. More people walking into a leaky room is just more no's.", fmt:"Reel", hook:"More butts in seats won't save a soft offer. Here's what actually moves the needle."},
+        {o:"Isn't this just funnel / bro-marketing?", under:"Faith tension, doesn't want to be sleazy.", reframe:"A clear offer is a gift. Selling done right removes confusion for the person you're called to serve.", fmt:"Faith-woven post", hook:"I used to think selling was gross. Then I realized a confusing offer is the unkind thing."},
+        {o:"I don't have the bandwidth for this.", under:"Already drowning running the event.", reframe:"That's the whole point. The design takes it off your plate so the room does the work, not you.", fmt:"Reel", hook:"If you're doing everything at your own event, no wonder it isn't converting."},
+        {o:"My audience is different.", under:"The special-case objection.", reframe:"Methods are many, principles are few. The principles of a room that converts are universal.", fmt:"Carousel", hook:"'My audience is different' might be the most expensive belief at your next event."}
+      ],
+      hooks:["You don't have a closing problem. You have a room-design problem.","A confusing offer isn't humble. It's unkind to the people you're called to help.","You can be the best speaker in the room and still leave all the fruit on the table."]
+    },
     persona:"You are writing to a faith-driven coach, speaker, or event host who runs retreats and sells a high-ticket offer from the room. He is powerful on stage but doesn't 'speak to sell.' His offer is good but it isn't sharp, and there aren't enough people in the room. He's frustrated by his close rate when the real problem is volume and room design. He's afraid that making an offer makes him a sleazy salesperson, which clashes with his faith.\nHe says: \"I don't want to be salesy.\" \"The offer is good, I just need more people.\" \"Help me craft the offer.\"\nHe wants: a clear high-ticket offer and a retreat designed so the room sells for him.\nThe reframe he needs: a clear offer is a gift, it removes confusion for the people he's called to serve. Selling done right is service.\nAvoid: bro-marketing, funnel-hacker hype, anything manipulative. Tone: warm, faith-aligned, strategic, encouraging, no pressure."
   },
 
@@ -556,6 +599,21 @@ const DATA = {
       ["\"Another off-site forgotten by Monday\"","Burned by trainings that didn't stick","This works on the leader's own piece first, then the team, with measurable follow-through."]
     ],
     ctas:["Want me to put together what a leadership renewal day could look like for you and your team?","Should I send you a one-page overview you could take to your board?"],
+    content:{
+      platform:"LinkedIn",
+      voice:"Professional, credible, leadership-insight driven. Story plus principle, useful to other leaders. Faith-aware but never preachy, frame it as whole-person leadership and values. Lead with the team and the outcome, never a personal 'spa'.",
+      pillars:["The buffer, naming the squeeze leaders feel between the board and the team","Retention and leadership capacity, the business case in ROI language","The leader nobody develops, the quiet loneliness at the top","Whole-person leadership, leading from your full self without leaving it at the door"],
+      objections:[
+        {o:"How do I justify this to the board?", under:"Spending org budget, needs defensibility.", reframe:"Frame it as retention and leadership capacity. The cost of losing one director dwarfs the cost of developing the team.", fmt:"LinkedIn data / insight post", hook:"The real cost of one burned-out director. It's not on any P&L, but it should be."},
+        {o:"Investing in me looks like weakness.", under:"Fear of appearing unable to handle it.", reframe:"The strongest leaders model being developed. You can't pour from empty, and your team can tell when you're running on fumes.", fmt:"LinkedIn story post", hook:"The most courageous thing I watched a CEO do this year: admit she was running on empty, and actually do something about it."},
+        {o:"We've done leadership trainings and nothing stuck.", under:"Burned by forgettable off-sites.", reframe:"One-off events don't change culture. Leader-first plus real follow-through does.", fmt:"LinkedIn carousel", hook:"Why your last leadership off-site was forgotten by Monday, and what actually changes that."},
+        {o:"My team is too busy and burned out for this.", under:"The irony, the burnout is the reason.", reframe:"'Too busy to develop your leaders' is the sentence that comes right before the resignations.", fmt:"LinkedIn post", hook:"'We're too slammed for leadership development right now' is usually said about six weeks before the resignation letters."},
+        {o:"What if it doesn't move the metrics?", under:"ROI doubt.", reframe:"Engagement and retention are leading indicators, and they move when leaders are actually resourced.", fmt:"LinkedIn insight post", hook:"3 quiet leadership signals that predict your retention six months before HR sees it."},
+        {o:"How is this different from executive coaching?", under:"Sees it as a commodity.", reframe:"Coaching works on the leader. This works on the leader AND the team, with renewal plus strategy, not just conversation.", fmt:"LinkedIn post", hook:"Executive coaching fixes the leader. But the leader was never the whole problem, or the whole solution."},
+        {o:"Will the faith element be an issue in a secular org?", under:"Workplace appropriateness.", reframe:"It's whole-person leadership and values, meeting people where they are, not preaching.", fmt:"LinkedIn post (subtle)", hook:"You don't have to leave your deepest convictions at the office door to lead well. Here's what whole-person leadership actually looks like."}
+      ],
+      hooks:["The most exhausted person in your organization is usually the one holding it together.","You cannot retain people you're too depleted to lead well.","Nobody is developing the leader who develops everyone else."]
+    },
     persona:"You are writing to a faith-driven corporate or organizational leader (C-suite, VP, department head, hospital CEO). She runs an organization she didn't build, answers to a board above her, and leads a team below her she mostly didn't hire. She is the buffer between a demanding board and a burned-out team. Everyone thinks she has it together; she is quietly drowning and has no one at work she can say that to. She keeps her faith out of the workplace and longs to be a whole person in one room. She spends an org budget, not her own money, and feels that investing in herself looks like weakness, so she will fund her team before she funds herself.\nShe says: \"I need help with my leaders.\" \"My team is burned out and so am I.\" \"I'm caught between the board and my people.\" \"How do I lead people I didn't hire?\"\nShe wants: to renew herself AND develop her leaders, with an outcome she can justify to the board (retention, engagement, leadership capacity).\nThe reframe she needs: developing yourself isn't weakness, it's the highest-leverage thing you can do for the people who depend on you.\nAvoid: anything that sounds soft, self-indulgent, or that she couldn't defend to a board. Lead with the team and the outcome, not a personal spa. Tone: warm but credible, professional, faith-aware without being preachy."
   }
 };
@@ -582,6 +640,7 @@ const TABS = [
   {id:"fears", label:"Deepest Fears"},
   {id:"journey", label:"The Journey"},
   {id:"connect", label:"Find & Connect"},
+  {id:"content", label:"Objections & Content"},
   {id:"message", label:"How to Speak to Them"}
 ];
 
@@ -677,6 +736,27 @@ function panelMarketing(d){
     <div class="tiles"><div class="tile full"><ul>${d.nurture.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
   </div>`;
 }
+function panelContent(d){
+  const c=d.content;
+  return `<div class="panel" data-panel="content">
+    <div class="kicker">Objection-busting content</div>
+    <h3 class="title serif">Turn every objection into a post.</h3>
+    <div class="platbadge">For ${c.platform}</div>
+    <p>Each objection below is a content prompt. Same shape every time: the objection, what's really underneath it, your reframe, and a ready-to-make post idea, all in Natalie's voice.</p>
+    <div class="tile full" style="margin-bottom:6px"><h4>Natalie's voice (keep every post sounding like this)</h4><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">${c.voice}</p></div>
+    <div class="subhead">Content pillars</div>
+    <div class="tiles"><div class="tile full"><ul>${c.pillars.map(p=>`<li>${p}</li>`).join('')}</ul></div></div>
+    <div class="subhead">Objections &rarr; content</div>
+    ${c.objections.map(x=>`<div class="objcard">
+        <div class="o">"${x.o}"</div>
+        <div class="meta"><b>Underneath:</b> ${x.under}</div>
+        <div class="meta"><b>Reframe:</b> ${x.reframe}</div>
+        <div class="post"><span class="pf">Post idea &middot; ${x.fmt}</span>"${x.hook}"</div>
+      </div>`).join('')}
+    <div class="subhead">Ready-to-post hooks</div>
+    ${c.hooks.map(h=>`<div class="opener"><div class="w">"${h}"</div></div>`).join('')}
+  </div>`;
+}
 function panelMessage(d){
   return `<div class="panel" data-panel="message">
     <div class="kicker">The messaging kit</div>
@@ -697,7 +777,7 @@ function panelMessage(d){
 function renderContent(who){
   const d=DATA[who];
   document.getElementById('content').innerHTML =
-    panelSnapshot(d)+panelVoice(d)+panelReads(d)+panelFears(d)+panelJourney(d)+panelMarketing(d)+panelMessage(d);
+    panelSnapshot(d)+panelVoice(d)+panelReads(d)+panelFears(d)+panelJourney(d)+panelMarketing(d)+panelContent(d)+panelMessage(d);
 }
 
 function copyPersona(btn){
